@@ -1,0 +1,60 @@
+1.Imports and Setup;  
+Imports required libraries;
+subprocess for running system commands, re for regex,
+matplotlib.pyplot for plotting, sqlite3 for database operations, tkinter for the GUI, and math for calculations.
+
+2.Initializes an SQLite database with a table signals to store each scan result's
+ SSID, signal strength (in % and dB), quality, and timestamp.
+
+3.Insert Wi-Fi Data into Database;
+Inserts Wi-Fi signal data into the database after each scan.
+
+4.Retrieve Historical Data;
+Fetches historical Wi-Fi data from the database, allowing the user to view past connection details.
+
+5.Get Connected Wi-Fi Network Information;
+Uses the netsh command (Windows-only) to get details of the currently connected Wi-Fi network,
+including SSID and signal strength percentage. Calculates the signal strength in dB and stores all values in a dictionary.
+ 
+ SSID :(Service Set Identifier)
+ wlan :wireless local area network
+
+ assume that quality of the signal proportional to the stength of the signal in %.
+
+6. Converts the signal strength percentage to decibels (dB) using a logarithmic formula.
+i.e 
+   -> o calculate the signal strength in decibels (dB) from the percentage of signal strength retrieved from the netsh command, we can use the following formula:
+
+Signal Strength (dB)=10⋅log base10(𝑃/𝑃0)
+
+Where:
+P is the signal strength in mW.
+P0 is the reference power level, usually taken as 1 mW
+1 mW.
+Since the signal strength we get is in percentage (0-100%), we can convert this percentage into mW .
+
+7.Displays a bar graph using matplotlib for signal strength (in % and dB) and quality.
+ Each time the scan runs, it inserts data into the database.
+
+8.Update Connected Network;
+Fetches and displays the latest connected network data in the GUI and triggers the plotting function.
+
+9.Display Connected Network in GUI;
+Updates the listbox with SSID, signal strength, quality, and signal strength
+ in dB if a connected network is detected.
+
+ 10.View Historical Data;
+ Displays historical Wi-Fi data stored in the database 
+ within the GUI's listbox, allowing you to track previous scans while continous running only.
+ note: it delete's previous data once close the program or shutdown the program.
+
+ 11. Setting Up Tkinter GUI
+ eg;root = Tk()
+............
+root.mainloop()
+   nitializes the main GUI window, with buttons to view the current connected network
+   or historical data, and a listbox to display the details.
+
+This program effectively combines Wi-Fi scanning, data storage, and display functionalities, providing both 
+-> real-time analysis 
+-> historical tracking of Wi-Fi signal performance in an interactive interface.
