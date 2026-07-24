@@ -17,6 +17,7 @@ Uses the netsh command (Windows-only) to get details of the currently connected 
 including SSID and signal strength percentage. Calculates the signal strength in dB and stores all values in a dictionary.
  
  SSID :(Service Set Identifier)
+
  wlan :wireless local area network
 
  assume that quality of the signal proportional to the stength of the signal in %.
